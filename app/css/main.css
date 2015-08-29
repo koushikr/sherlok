@@ -32,7 +32,24 @@ body {
 }
 
 .notification {
-    text-align: right;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    right: 20px;
+    top: -3px;
+}
+
+#alert-count {
+    background-color: #DC0D0D;
+    width: 20px;
+    height: 20px;
+    display: block;
+    position: absolute;
+    top: -3px;
+    right: -12px;
+    border-radius: 50%;
+    color: #fff;
+    text-align: center;
 }
 
 .content {
@@ -112,16 +129,100 @@ body {
     font-size: 28px;
 }
 
-#screen1-cta {
-    position: absolute;
-    bottom: 25px;
-    left: 20%;
-    width: 60%;
+.bid-btn, #screen1-cta, #seller-cta {
     border: 2px solid #00A7FF;
     color: #00A7FF;
 }
 
+#screen1-cta, #seller-cta {
+    position: absolute;
+    bottom: 25px;
+    left: 20%;
+    width: 60%;
+}
 
+
+.request-screen .center-image-container, .seller-wait-screen .center-image-container{
+  margin-top: 50%;
+}
+
+.center-image-container {
+  text-align: center;
+}
+.center-image-container img{
+  opacity: .4;
+}
+
+.success-screen h2, .bid-result-screen h2, .seller-wait-screen h2 , .seller-bid-screen h2 {
+  font-size: 20px;
+  text-align: center;
+  color: #00A7FF;
+}
+
+
+.bid-item {
+  margin-top: 30px;
+  border-bottom: 1px solid rgba(0, 167, 255, 0.38);
+  padding-bottom: 10px;
+}
+
+.bid-seller {
+  color: #fff;
+  font-weight: 600;
+}
+
+.bid-price {
+  font-size: 22px;
+  color: #FF9100;
+}
+
+
+.seller-bid-screen .form-group p {
+  margin-bottom: 0;
+  color: #00A7FF;
+}
+
+
+
+.seller-bid-screen h3{
+  margin-bottom: 15px;
+  margin-top: 7px;
+  color: #fff;
+  font-size: 22px;
+  font-weight: 300;
+}
+
+.seller-bid-screen .fa-circle {
+  color: #00A7FF;
+}
+
+.seller-action-item {
+    margin: 10px;
+    padding: 25px;
+    background-color: rgba(84, 78, 78, 0.6);
+    -webkit-box-shadow: inset 0px 2px 25px -2px rgba(0,0,0,0.68);
+    -moz-box-shadow: inset 0px 2px 25px -2px rgba(0,0,0,0.68);
+    box-shadow: inset 0px 2px 25px -2px rgba(0,0,0,0.68);
+    border-radius: 13px;
+}
+
+.seller-action-item p {
+  font-size: 10px;
+  color: #00A7FF;
+  line-height: 25px;
+}
+
+.seller-action-item h3 {
+  text-align: left;
+  margin-top: 0;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.slider-container.row{
+  margin-top: 9px;
+  margin-bottom: 25px;
+}
 
 
 
