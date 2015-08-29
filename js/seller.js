@@ -9,6 +9,7 @@
    // Init method when the page loads 
    function init(){
         console.log("Initing sherlock seller page");
+        childAdded();
    }  
 
    // Get QueryParams from the url
@@ -28,5 +29,24 @@
         }
         return query_string;
    } ();
+   
+   var childAdded = function(){
+       var firebaseReference = getFirebaseReference().child("bids");
+       firebaseReference.on("child_added", function(snapshot) {
+            console.log("Child Has Been Changed " + snapshot.val());
+            var value = snapshot.val();
+            var seller_id = queryParams.seller_id ? queryParams.seller_id : "seller1";
+            var product = value.product;
+            firebaseReference.on("/seller/products/"+product, function(product_snapshot){
+                var sellable_product = product_snapshot.val());
+
+                if(sellable_product){
+                   console.log("Found product "+sellable_product);
+                   // Append to seller div here
+                }
+              }, function(errorObject){ console.log("Seller Product Doesn't exist");
+            });
+       });
+   } 
 
 })(jQuery);
