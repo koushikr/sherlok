@@ -36,13 +36,40 @@
             if(sucesscallback) sucesscallback(response);
         });
     };
-    
+   
+   var require = function(script_url, dataType){
+        $.ajax({
+            url: script,
+            dataType: 'script',
+            async: false,
+            success = function(){
+                console.log("Loaded script with url..." + script_url);
+            },
 
+            error: function(){
+                console.log("Failed to load the script..."+ script_url);
+            }    
+        });
+   }
+   
+   require("./firebase.js");
    var $doc = $(document);
    $doc.on('ready', init);
+   var firebaseRef = null;
 
    function init(){
-        
+       get_firebase_reference();                 
+       binder();
+
+
    }
 
+
+   var binder = function(){
+        $('cloc')
+   };
+
+   var get_firebase_reference = function(){
+        firebaseRef = new Firebase("https://sherlok.firebaseio.com/");
+   }
 })(jQuery);
