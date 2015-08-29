@@ -9,8 +9,18 @@ var getFirebaseReference = function(){
 
 // Get GeoFirebase Reference
 var getGeoFireBaseReference = function(){
-   return new GeoFire(getFirebaseReference()).ref(); 
+   return new GeoFire(getFirebaseReference()); // Geofire().ref === fireBaseReference 
 }
+
+/**
+// Sample geo get and sets
+var geoRef = new GeoFire(getFirebaseReference().child("/seller/seller1"));
+geoRef.set("location", [37.79, -122.41]).then(function() {
+  console.log("Provided key has been added to GeoFire");
+}, function(error) {
+  console.log("Error: " + error);
+});
+*/
 
 // Load CSS files dynamically
 var CSS = {
