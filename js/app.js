@@ -67,6 +67,44 @@
    // Init method when the page loads 
    function init(){
         console.log("Initing sherlock");
+        processCustomerQuote();
+        childChanged();
    }  
+
+
+   var processCustomerQuote = function(){
+        $doc.on('click', '#screen1-cta', function(e){
+            console.log("Setting Bid Reference");
+            var customer_id = "test_customer_id";
+            var product = $('#exampleInputEmail1').val();
+            var price = $('#customer-price').html();
+            if(customer_id && price && product){
+              var bidsReference = getFirebaseReference().child("bids").push();            
+              bidsReference.set({
+                  customer_id: customer_id,
+                  product: product,
+                  price: price
+              });  
+            }
+        });
+   }
+
+   var childChanged = function(){
+       var firebaseReference = getFirebaseReference().child("bids");
+       firebaseReference.on("child_changed", function(snapshot) {
+            console.log("Child State Has Changed");
+            console.log(snapshot.val());
+            // check of sellers being present or not..
+            // if present loop through all of them and
+            // Append to customer div here
+       });
+   }
+
+   // Sorting the resultList by price
+   var results = function(resultList){
+      var newResults = resultList.slice(0);
+      newResults.sort(function(a,b) { return a.seller_price - b.seller_price;});
+      return newResults;
+   }
 
 })(jQuery);
