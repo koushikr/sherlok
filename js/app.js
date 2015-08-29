@@ -99,4 +99,12 @@
             // Append to customer div here
        });
    }
+
+   // Sorting the resultList by price
+   var results = function(resultList){
+      var newResults = resultList.slice(0);
+      newResults.sort(function(a,b) { return a.seller_price - b.seller_price;});
+      return newResults;
+   }
+
 })(jQuery);
