@@ -94,6 +94,8 @@
        firebaseReference.on("child_changed", function(snapshot) {
             console.log("Child State Has Changed");
             console.log(snapshot.val());
+            // check of sellers being present or not..
+            // if present loop through all of them and
             // Append to customer div here
        });
    }
