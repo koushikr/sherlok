@@ -5,6 +5,7 @@
 (function($){
 
    // Get QueryParams from the url
+   // Usage -- var page_id = queryParams.page ? queryParams.page : "seller_1";
    var queryParams = function () {
         var query_string = {};
         var query = window.location.search.substring(1);
@@ -41,7 +42,6 @@
             if(sucesscallback) sucesscallback(response);
         });
     };
-   
 
    // To dynamically load a javascript
    var require = function(script_url, dataType){
