@@ -1,5 +1,10 @@
+/*!
+ * This is the jQuery event binder for sherlock.
+ */
+
 (function($){
 
+   // Get QueryParams from the url
    var queryParams = function () {
         var query_string = {};
         var query = window.location.search.substring(1);
@@ -17,6 +22,7 @@
         return query_string;
    } ();
 
+   // Make an AJAX call with bindings
    var call_ajax = function (url, dataType, data, requestType, sucesscallback, failurecallback){
         var ajax = $.ajax({
             url: url,
@@ -37,6 +43,7 @@
     };
    
 
+   // To dynamically load a javascript
    var require = function(script_url, dataType){
         var req = $.ajax({
             url: script_url,
@@ -57,10 +64,9 @@
    var $doc = $(document);
    $doc.on('ready', init);
     
+   // Init method when the page loads 
    function init(){
         console.log("Initing sherlock");
    }  
 
-   
-   
 })(jQuery);
