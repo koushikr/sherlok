@@ -57,6 +57,7 @@
                    $('#customer_selected_price').html(value.price);
                    $('#bidId').val(snapshot.key());
                    updateSlider(value.price);
+                   updateSlaSlider();
                 }
                 }, function(errorObject){ console.log("Seller Product Doesn't exist");
               });  
@@ -76,24 +77,8 @@
         value: price - 1000
       });
       
-      project($element, 'seller-price');
-      $element.rangeslider('update', true);
-
-      $element = $('input[id="sla"]');
-      $element.attr({
-        min: 12,
-        max: 48,
-        step: 2,
-        value: 24
-      });
       
-      project($element, 'sla');
-      $element.rangeslider('update', true);
-  }
-
-  var project = function(element, id){
-      element
-      .rangeslider({
+      $element.rangeslider({
         polyfill: false,
         onInit: function() {
           $handle = $('.rangeslider__handle', this.$range);
@@ -105,9 +90,37 @@
       });
 
       function updateHandle(el, val) {
-          $('#'+id).html(val);
+          $('#seller-price').html(val);
       }
+      $element.rangeslider('update', true);
   }
+      
+  var updateSlaSlider = function(sla){    
+      $element = $('input[id="sla"]');
+      $element.attr({
+        min: 12,
+        max: 48,
+        step: 2,
+        value: 24
+      });
+      $element.rangeslider({
+        polyfill: false,
+        onInit: function() {
+          $handle = $('.rangeslider__handle', this.$range);
+          updateHandle($handle[0], this.value);
+        }
+      })
+      .on('input', function() {
+        updateHandle($handle[0], this.value);
+      });
+
+       function updateHandle(el, val) {
+          $('#sla').html(val);
+      }
+      $element.rangeslider('update', true);
+  }
+
+  
 
    var canProceed = function(customer_requested_price, sellable_product){
         return (customer_requested_price < sellable_product.max_price && customer_requested_price > sellable_product.min_price);

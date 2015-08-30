@@ -74,7 +74,7 @@ $('#the-basics .typeahead').typeahead({
 
 
 var updateSlider = function(pictureDict, datum){
-    var $element = $('input[type="range"]');
+    var $element = $('input[id="customer-price-range"]');
     $element.attr({
         min: pictureDict[datum].price - 1000,
         max: pictureDict[datum].price + 1000,
@@ -86,7 +86,7 @@ var updateSlider = function(pictureDict, datum){
 
 
 $(function() {
-    var $element = $('input[type="range"]');
+    var $element = $('input[id="customer-price-range"]');
     var $handle;
 
     $element.attr({
