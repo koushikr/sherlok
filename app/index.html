@@ -92,15 +92,15 @@
         </div>
 
         <div class="content success-screen hidden">
-            <h2>Broadcasting your Query</h2>
-            <div class="center-image-container">
+            <div class="center-image-container image-broadcast">
+                <h2>Broadcasting your Query</h2>
                 <img src="img/broadcast.gif" height="auto" width="100%">
             </div>
 
-            <a href="#" id="show-bids-cta" class="btn">2 Sellers Responded</a>
+            <a href="#" id="show-bids-cta" class="btn hidden">Sellers Responded</a>
         </div>
 
-        <div class="content bid-result-screen ">
+        <div class="content bid-result-screen hidden">
             <h2>Choose your preferred Seller</h2>
             <div id="bid-container">
             </div>
@@ -139,17 +139,12 @@
             <div class="wrapper">
                 <div class="form-group">
                     <label>YOUR</label>
-                    <h3>Dell Laptop</h3>
-                </div>
-
-                <div class="form-group">
-                    <label>WILL BE DELIVERED TO</label>
-                    <h3>Dell Laptop</h3>
+                    <h3 id="checkout-product">Dell Laptop</h3>
                 </div>
 
                 <div class="form-group">
                     <label>IN</label>
-                    <h3>48 hours</h3>
+                    <h3 id="checkout-duration">48 hours</h3>
                 </div>
 
                 <div class="form-group">
@@ -182,7 +177,9 @@
                 ₹ {{bid_price}}
             </div>
             <div class="col-xs-4 bid-cta">
-                <a href="#" data-product-duration={{bid_duration}} class="btn bid-btn">Choose</a>
+                <a href="#" id="checkout-product" data-product-duration={{bid_duration}} 
+                data-product-id={{product_id}}        
+                class="btn bid-btn">Checkout</a>
             </div>
         </div>
 

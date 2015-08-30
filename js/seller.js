@@ -47,8 +47,9 @@
                 if (bidMarked == 0){
                 var seller_id_reference = fRef.child("/sellers/"+seller_id+"/products/"+product);
                 seller_id_reference.on('value', function(product_snapshot){
-                var sellable_product = product_snapshot.val();
-                if(sellable_product && canProceed(value.price, sellable_product)){
+                if(product_snapshot != null){
+                  var sellable_product = product_snapshot.val();  
+                  if(sellable_product && canProceed(value.price, sellable_product)){
                    console.log("Found product "+sellable_product);
                    $('.seller-wait-screen').addClass('hidden');
                    $('.seller-bid-screen').removeClass('hidden');
@@ -56,7 +57,8 @@
                    $('#seller_min_price').html(sellable_product.min_price);
                    $('#customer_selected_price').html(value.price);
                    $('#bidId').val(snapshot.key());
-                }
+                   }
+                } 
                 }, function(errorObject){ console.log("Seller Product Doesn't exist");
               });  
               }
@@ -65,6 +67,8 @@
             });
        });
    }
+
+
 
    var canProceed = function(customer_requested_price, sellable_product){
         return (customer_requested_price < sellable_product.max_price && customer_requested_price > sellable_product.min_price);

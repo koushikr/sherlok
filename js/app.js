@@ -73,8 +73,19 @@
         processCustomerQuote();
         childChanged();
         registerUser();
+        displayBidders();
+        displayCheckout();
    }  
 
+   var displayCheckout = function(){
+       $doc.on('click', '#checkout-product', function(e){
+            console.log("Checking out Product");
+            $('.bid-result-screen').addClass('hidden');
+            $('#checkout-product').html(e.target.dataset.productId);
+            $('#checkout-duration').html(e.target.dataset.productDuration);
+            $('.checkout-screen').removeClass('hidden');
+       });
+   }
 
    var processCustomerQuote = function(){
         $doc.on('click', '#screen1-cta', function(e){
@@ -100,10 +111,17 @@
        firebaseReference.on("child_changed", function(snapshot) {
             console.log("Child State Has Changed");
             console.log(snapshot.val());
-            // check of sellers being present or not..
-            // if present loop through all of them and
-            // Append to customer div here
+            //$('.image-broadcast').addClass('hidden');
+            $('#show-bids-cta').removeClass('hidden');
+            renderBidders(snapshot.val());
        });
+   }
+
+   var displayBidders = function(){
+        $doc.on('click', '#show-bids-cta', function(e){
+            $('.success-screen').addClass('hidden');
+            $('.bid-result-screen').removeClass('hidden'); 
+        });
    }
 
    var registerUser = function(){
@@ -134,5 +152,18 @@
         }
         return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
               s4() + '-' + s4() + s4() + s4();
+   }
+
+
+   var renderBidders = function(object){
+      for(var key in object.sellers){
+          var value = object.sellers[key];
+          var source   = $("#bid-result-template").html();    
+          var template = Handlebars.compile(source);
+          var context = {product_id: object.product, bid_seller: value.seller_id, bid_price: value.seller_price, bid_rating: value.rating, bid_duration: value.sla, bid_distance: value.seller_distance};
+          var html    = template(context);
+          $('#bid-container').append(html);
+      }
+      $('.bid-result-screen').addClass('hidden'); 
    }
 })(jQuery);

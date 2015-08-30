@@ -26,7 +26,7 @@ var pictureDict = {
         "price": 36000,
         "image_name": "./img/products/samsung.png"
     },
-    "Dell_Latitude_Laptop": {
+    "Dell_Latitude_3540": {
         "price": 58000,
         "image_name": "./img/products/dell_laptop.png"
     },
@@ -48,8 +48,8 @@ var pictureDict = {
     }
 }
 
-var states = ['Samsung Galaxy S6', 'Dell Latitude 3540', 'Seagate Wireless Plus', 'Nikon D7100 DSLR Camera',
-'Micromax Full HD LED Television', 'Lenovo Yoga 10 Tablet'
+var states = ['Samsung Galaxy S6', 'Dell Latitude 3540', 'Seagate 2TB Hard drive', 'Nikon D7100 DSLR Camera',
+'Micromax LED TV', 'Lenovo Yoga Tablet Laptop'
 ];
 
 $('#the-basics .typeahead').typeahead({
@@ -112,16 +112,6 @@ $(function() {
         $('#customer-price .number').html(val);
     }
 
-
-    var source   = $("#bid-result-template").html();
-    var template = Handlebars.compile(source);
-    var context = {bid_seller: "Pai Mobile", bid_price: "5500", bid_rating: "3.6", bid_duration: "45", bid_distance: "4.2"};
-    var html    = template(context);
-
-    console.log("html");
-    console.log(html);
-
-    $('#bid-container').append(html);
 });
 
 
