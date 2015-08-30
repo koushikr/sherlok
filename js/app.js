@@ -4,6 +4,8 @@
 
 (function($){
 
+  var customer = {}
+
    // Get QueryParams from the url
    // Usage -- var page_id = queryParams.page ? queryParams.page : "seller_1";
    var queryParams = function () {
@@ -67,24 +69,28 @@
    // Init method when the page loads 
    function init(){
         console.log("Initing sherlock");
+        $('.register-screen').removeClass('hidden');
         processCustomerQuote();
         childChanged();
+        registerUser();
    }  
 
 
    var processCustomerQuote = function(){
         $doc.on('click', '#screen1-cta', function(e){
             console.log("Setting Bid Reference");
-            var customer_id = $('#customerId').val();
-            var product = $('#exampleInputEmail1').val();
-            var price = $('#customer-price').html();
-            if(customer_id && price && product){
+            $('#product-info').addClass('hidden');
+            $('#product-container').addClass('hidden');
+            var product = $('#selectedProduct').val();
+            var price = ($('#customer-price').html().split(" "))[1];
+            if(customer.customer_id && price && product){
               var bidsReference = getFirebaseReference().child("bids").push();            
               bidsReference.set({
-                  customer_id: customer_id,
+                  customer_id: customer.customer_id,
                   product: product,
                   price: price
-              });  
+              }); 
+              $('.success-screen').removeClass('hidden');
             }
         });
    }
@@ -100,6 +106,19 @@
        });
    }
 
+   var registerUser = function(){
+       $doc.on('click', '#register-cta', function(e){
+           console.log("Registering the new user");
+           customer.name = $('#registerName').val();
+           customer.email = $('#registerEmail').val();
+           customer.address = $('#registerAddress').val();
+           customer.customer_id = customer.customer_id ? customer.customer_id : guid();
+           console.log("Registered the user "+customer);
+           $('.register-screen').addClass('hidden');
+           $('.request-screen').removeClass('hidden')
+       });
+   }
+
    // Sorting the resultList by price
    var results = function(resultList){
       var newResults = resultList.slice(0);
@@ -107,4 +126,13 @@
       return newResults;
    }
 
+   var guid = function guid() {
+        function s4() {
+            return Math.floor((1 + Math.random()) * 0x10000)
+              .toString(16)
+              .substring(1);
+        }
+        return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+              s4() + '-' + s4() + s4() + s4();
+   }
 })(jQuery);

@@ -65,16 +65,16 @@
 
         <div class="content request-screen hidden">
             <div class="form-group" id="the-basics">
-                <input type="text" class="form-control typeahead" id="exampleInputEmail1" placeholder="Select a Product">
+                <input type="text" class="form-control typeahead" id="search_input" placeholder="Select a Product">
             </div>
 
             <div class="center-image-container hidden">
                 <img src="img/sherlock.png" height="170px" width="170px">
             </div>
 
-            <div id="product-info" class="">
-                <div class="product-container">
-                    <h2>Dell Inspiron 1525</h2>
+            <div id="product-info" class="hidden">
+                <div class="product-container hidden" id="Samsung_Galaxy_S6">
+                    <h2>Samsung Galaxy S6</h2>
                     <img src="img/products/1.png">
                 </div>
 
@@ -125,7 +125,7 @@
             </div>
         </div>
 
-        <div class="content checkout-screen ">
+        <div class="content checkout-screen hidden">
             <h2>Checkout</h2>
 
             <div class="wrapper">
@@ -152,6 +152,7 @@
 
         </div>
 
+    <input type="text" id="selectedProduct" class="hidden">    
     </div> <!-- /container -->
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>

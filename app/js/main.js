@@ -33,6 +33,12 @@ $('#the-basics .typeahead').typeahead({
 {
   name: 'states',
   source: substringMatcher(states)
+}).on('typeahead:selected', function(obj, datum){
+    datum=datum.replace(/ /g,"_");
+    $('#product-info').removeClass('hidden');
+    $('#product-container').addClass('hidden');
+    $('#'+datum).removeClass('hidden');
+    $('#selectedProduct').val(datum);
 });
 
 
