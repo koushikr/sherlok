@@ -73,7 +73,7 @@
         min: price - 1000,
         max: price + 1000,
         step: 100,
-        value: price
+        value: price - 1000
       });
       
       project($element, 'seller-price');
