@@ -81,8 +81,8 @@
        $doc.on('click', '#checkout-product', function(e){
             console.log("Checking out Product");
             $('.bid-result-screen').addClass('hidden');
-            $('#checkout-product').html(e.target.dataset.productId);
-            $('#checkout-duration').html(e.target.dataset.productDuration);
+            $('#checkout-product-text').html(e.target.dataset.productId);
+            $('#checkout-duration-text').html(e.target.dataset.productDuration+" hours");
             $('.checkout-screen').removeClass('hidden');
        });
    }

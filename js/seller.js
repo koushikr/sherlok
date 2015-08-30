@@ -56,6 +56,7 @@
                    $('#seller_min_price').html(sellable_product.min_price);
                    $('#customer_selected_price').html(value.price);
                    $('#bidId').val(snapshot.key());
+                   updateSlider(value.price);
                 }
                 }, function(errorObject){ console.log("Seller Product Doesn't exist");
               });  
@@ -66,7 +67,47 @@
        });
    }
 
-   
+   var updateSlider = function(price){
+      var $element = $('input[id="seller-price"]');
+      $element.attr({
+        min: price - 1000,
+        max: price + 1000,
+        step: 100,
+        value: price
+      });
+      
+      project($element, 'seller-price');
+      $element.rangeslider('update', true);
+
+      $element = $('input[id="sla"]');
+      $element.attr({
+        min: 12,
+        max: 48,
+        step: 2,
+        value: 24
+      });
+      
+      project($element, 'sla');
+      $element.rangeslider('update', true);
+  }
+
+  var project = function(element, id){
+      element
+      .rangeslider({
+        polyfill: false,
+        onInit: function() {
+          $handle = $('.rangeslider__handle', this.$range);
+          updateHandle($handle[0], this.value);
+        }
+      })
+      .on('input', function() {
+        updateHandle($handle[0], this.value);
+      });
+
+      function updateHandle(el, val) {
+          $('#'+id).html(val);
+      }
+  }
 
    var canProceed = function(customer_requested_price, sellable_product){
         return (customer_requested_price < sellable_product.max_price && customer_requested_price > sellable_product.min_price);
@@ -83,7 +124,7 @@
    var productApprove = function(){
        $doc.on('click', '#seller-cta', function(e){
             var bidId = $('#bidId').val();
-            var sla = $('#sla').val() ? $('#sla').val() : 12;
+            var sla = $('#sla').val() ? $('#sla').html().split(" ")[0] : 12;
             var seller_distance = $('#seller_distance').val() ? $('#seller_distance').val() : 2;
             var seller_price = $('#seller_min_price').html();
             var seller_id = queryParams.seller_id ? queryParams.seller_id : "WT_Retail";

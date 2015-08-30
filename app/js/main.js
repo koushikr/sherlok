@@ -63,7 +63,7 @@ $('#the-basics .typeahead').typeahead({
 }).on('typeahead:selected', function(obj, datum){
     datum=datum.replace(/ /g,"_");
     $('#product-info').removeClass('hidden');
-    $('#product-container').addClass('hidden');
+    $('.product-container').removeClass('hidden');
     $('#'+datum).removeClass('hidden');
     $('#selectedProduct').val(datum);
     console.log(pictureDict);
@@ -79,7 +79,7 @@ var updateSlider = function(pictureDict, datum){
         min: pictureDict[datum].price - 1000,
         max: pictureDict[datum].price + 1000,
         step: 100,
-        value: pictureDict[datum].price
+        value: pictureDict[datum].price - 1000
     });
     $element.rangeslider('update', true);
 }
