@@ -75,7 +75,7 @@
    var processCustomerQuote = function(){
         $doc.on('click', '#screen1-cta', function(e){
             console.log("Setting Bid Reference");
-            var customer_id = "test_customer_id";
+            var customer_id = $('#customerId').val();
             var product = $('#exampleInputEmail1').val();
             var price = $('#customer-price').html();
             if(customer_id && price && product){
