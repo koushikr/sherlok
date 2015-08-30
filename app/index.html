@@ -63,7 +63,7 @@
             <a href="#" id="register-cta" class="btn">Register</a>
         </div>
 
-        <div class="content request-screen hidden">
+        <div class="content request-screen">
             <div class="form-group" id="the-basics">
                 <input type="text" class="form-control typeahead" id="exampleInputEmail1" placeholder="Select a Product">
             </div>
@@ -79,11 +79,11 @@
                 </div>
 
                 <div class="form-group">
-                    <p class="center" id="customer-price">₹ 9000</p>
+                    <p class="center" id="customer-price"><span>₹ </span><span class="number">9000</span></p>
                 </div>
 
                 <div class="form-group">
-                    <input type="range" min="10" max="1000" step="10" value="300">
+                    <input type="range">
                 </div>
 
                 <a href="#" id="screen1-cta" class="btn">Request</a>
@@ -125,7 +125,7 @@
             </div>
         </div>
 
-        <div class="content checkout-screen ">
+        <div class="content checkout-screen hidden">
             <h2>Checkout</h2>
 
             <div class="wrapper">

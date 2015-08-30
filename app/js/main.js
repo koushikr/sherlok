@@ -41,6 +41,13 @@ $(function() {
     var $element = $('input[type="range"]');
     var $handle;
 
+    $element.attr({
+        min: 8000,
+        max: 10000,
+        step: 100,
+        value: 9000
+    });
+
     $element
       .rangeslider({
         polyfill: false,
@@ -54,7 +61,7 @@ $(function() {
       });
 
     function updateHandle(el, val) {
-        $('#customer-price').innerHTML = val;
+        $('#customer-price .number').html(val);
     }
 });
 
