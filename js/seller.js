@@ -124,7 +124,7 @@
    var productApprove = function(){
        $doc.on('click', '#seller-cta', function(e){
             var bidId = $('#bidId').val();
-            var sla = $('#sla').val() ? $('#sla').html().split(" ")[0] : 12;
+            var sla = $('#sla').html() ? $('#sla').html().split(" ")[0] : 12;
             var seller_distance = $('#seller_distance').val() ? $('#seller_distance').val() : 2;
             var seller_price = $('#seller_min_price').html();
             var seller_id = queryParams.seller_id ? queryParams.seller_id : "WT_Retail";
