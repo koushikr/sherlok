@@ -18,6 +18,7 @@
         <link rel="stylesheet" href="css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" href="css/slider.css">
+        <link rel="stylesheet" href="js/vendor/raty/jquery.raty.css">
         <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
 
         <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
@@ -33,15 +34,15 @@
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="container">
        <div class="header row">
-            <div class="col-xs-6 col-xs-offset-2 center" id="title">
+            <div class="col-xs-12 center" id="title">
                 <img src="img/logo.png" width="150px" height="22.5px">
             </div>
-            <div class="col-xs-4">
+            <!-- <div class="col-xs-4">
                 <div class="notification">
                     <img src="img/notification.png" width="30px" height="30px">
                     <span id="alert-count">1</span>
                 </div>
-            </div>
+            </div> -->
         </div>
 
        <div class="content register-screen hidden">
@@ -63,7 +64,7 @@
             <a href="#" id="register-cta" class="btn">Register</a>
         </div>
 
-        <div class="content request-screen">
+        <div class="content request-screen hidden">
             <div class="form-group" id="the-basics">
                 <input type="text" class="form-control typeahead" id="exampleInputEmail1" placeholder="Select a Product">
             </div>
@@ -95,34 +96,41 @@
             <div class="center-image-container">
                 <img src="img/broadcast.gif" height="auto" width="100%">
             </div>
+
+            <a href="#" id="show-bids-cta" class="btn">2 Sellers Responded</a>
         </div>
 
-        <div class="content bid-result-screen hidden">
+        <div class="content bid-result-screen ">
             <h2>Choose your preferred Seller</h2>
-
-            <div class="bid-item row">
-                <div class="col-xs-4 bid-seller">
-                    Poorvika Mobiles
-                </div>
-                <div class="col-xs-4 bid-price">
-                    ₹ 2000
-                </div>
-                <div class="col-xs-4 bid-cta">
-                    <a href="#" class="btn bid-btn">Choose</a>
-                </div>
+            <div id="bid-container">
             </div>
+           <!--  <div class="bid-item row">
+                <div class="row">
+                    <div class="col-xs-4 bid-seller">
+                        Poorvika Mobiles
+                    </div>
+                    <div class="col-xs-4 bid-price">
+                        ₹ 2000
+                    </div>
+                    <div class="col-xs-4 bid-cta">
+                        <a href="#" class="btn bid-btn">Choose</a>
+                    </div>
+                </div>
 
-            <div class="bid-item row">
-                <div class="col-xs-4 bid-seller">
-                    Sangeeta Mobiles
+                <div class="row">
+                    <div class="col-xs-4 bid-rating">
+                        Rated 3.5/5
+                    </div>
+
+                    <div class="col-xs-4 bid-duration">
+                        48 hours
+                    </div>
+
+                    <div class="col-xs-4 bid-distance">
+                        4.3 Kms
+                    </div>
                 </div>
-                <div class="col-xs-4 bid-price">
-                    ₹ 2500
-                </div>
-                <div class="col-xs-4 bid-cta">
-                    <a href="#" class="btn bid-btn">Choose</a>
-                </div>
-            </div>
+            </div> -->
         </div>
 
         <div class="content checkout-screen hidden">
@@ -159,7 +167,39 @@
     <script src="js/vendor/typeahead.js/typeahead.jquery.min.js"></script>
     <script src="js/vendor/rangeslider.min.js"></script>
     <script src="js/vendor/bootstrap.min.js"></script>
-
+    <script src="js/vendor/handlebars-v3.0.3.js"></script>
+    <script src="js/vendor/raty/jquery.raty.js"></script>
     <script src="js/main.js"></script>
+
+    <script id="bid-result-template" type="text/x-handlebars-template">
+       <div class="bid-item row">
+        <div class="row">
+            <div class="col-xs-4 bid-seller">
+                {{bid_seller}}
+            </div>
+            <div class="col-xs-4 bid-price">
+                ₹ {{bid_price}}
+            </div>
+            <div class="col-xs-4 bid-cta">
+                <a href="#" data-product-duration={{bid_duration}} class="btn bid-btn">Choose</a>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-4 bid-rating">
+                Rated {{bid_rating}}/5
+            </div>
+
+            <div class="col-xs-4 bid-duration">
+                {{bid_duration}} hours
+            </div>
+
+            <div class="col-xs-4 bid-distance">
+                {{bid_distance}} Kms
+            </div>
+        </div>
+        </div>
+    </script>
+
     </body>
 </html>

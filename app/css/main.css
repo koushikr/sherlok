@@ -129,12 +129,12 @@ body {
     font-size: 28px;
 }
 
-.bid-btn, #screen1-cta, #seller-cta, #register-cta {
+.bid-btn, #screen1-cta, #seller-cta, #register-cta , #show-bids-cta{
     border: 2px solid #00A7FF;
     color: #00A7FF;
 }
 
-#screen1-cta, #seller-cta, #register-cta {
+#screen1-cta, #seller-cta, #register-cta , #show-bids-cta{
     position: absolute;
     bottom: 25px;
     left: 20%;
@@ -144,6 +144,10 @@ body {
 
 .request-screen .center-image-container, .seller-wait-screen .center-image-container{
   margin-top: 50%;
+}
+
+.success-screen .center-image-container img {
+   margin-top: 35px;
 }
 
 .center-image-container {
@@ -174,6 +178,12 @@ body {
 .bid-price {
   font-size: 22px;
   color: #FF9100;
+}
+
+.bid-rating, .bid-duration, .bid-distance {
+  color: #A0A0A0;
+  text-transform: uppercase;
+  font-size: 12px;
 }
 
 

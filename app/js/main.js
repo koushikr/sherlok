@@ -63,6 +63,17 @@ $(function() {
     function updateHandle(el, val) {
         $('#customer-price .number').html(val);
     }
+
+
+    var source   = $("#bid-result-template").html();
+    var template = Handlebars.compile(source);
+    var context = {bid_seller: "Pai Mobile", bid_price: "5500", bid_rating: "3.6", bid_duration: "45", bid_distance: "4.2"};
+    var html    = template(context);
+
+    console.log("html");
+    console.log(html);
+
+    $('#bid-container').append(html);
 });
 
 
