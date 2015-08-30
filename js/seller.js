@@ -40,8 +40,9 @@
             var seller_id = queryParams.seller_id ? queryParams.seller_id : "seller1";
             var product = value.product;
             var sellable_bid_id = snapshot.key();
-            fRef.on("/seller/products/"+product, function(product_snapshot){
-                var sellable_product = product_snapshot.val());
+            var seller_id_reference = fRef.child("/sellers/"+seller_id+"products/"+product);
+            seller_id_reference.on('value', function(product_snapshot){
+                var sellable_product = product_snapshot.val();
                 if(sellable_product && canProceed(product.price, sellable_product)){
                    console.log("Found product "+sellable_product);
                    // Append to seller div here - use sellable_bid_id
