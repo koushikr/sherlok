@@ -129,12 +129,12 @@ body {
     font-size: 28px;
 }
 
-.bid-btn, #screen1-cta, #seller-cta {
+.bid-btn, #screen1-cta, #seller-cta, #register-cta {
     border: 2px solid #00A7FF;
     color: #00A7FF;
 }
 
-#screen1-cta, #seller-cta {
+#screen1-cta, #seller-cta, #register-cta {
     position: absolute;
     bottom: 25px;
     left: 20%;
@@ -153,7 +153,7 @@ body {
   opacity: .4;
 }
 
-.success-screen h2, .bid-result-screen h2, .seller-wait-screen h2 , .seller-bid-screen h2 {
+.success-screen h2, .bid-result-screen h2, .seller-wait-screen h2 , .seller-bid-screen h2, .checkout-screen h2 {
   font-size: 20px;
   text-align: center;
   color: #00A7FF;
@@ -224,8 +224,24 @@ body {
   margin-bottom: 25px;
 }
 
+.register-screen label{
+  font-size: 10px;
+  color: #00A7FF;
+}
 
 
+.checkout-screen label {
+  color: #00A7FF;
+}
+
+.checkout-screen h3 {
+  margin-top: 0;
+  color: #fff;
+}
+
+.checkout-screen .wrapper{
+  margin-top: 70px;
+}
 
 
 
