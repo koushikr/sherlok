@@ -120,7 +120,7 @@ body {
 }
 
 .product-container img {
-    width: 70%;
+    width: 50%;
     height: auto;
 }
 
@@ -161,6 +161,10 @@ body {
   font-size: 20px;
   text-align: center;
   color: #00A7FF;
+}
+
+.seller-bid-screen h2 {
+  font-size: 14px;
 }
 
 
