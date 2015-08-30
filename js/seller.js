@@ -70,6 +70,7 @@
 
    var updateSlider = function(price){
       var $element = $('input[id="seller-price-slider"]');
+      console.log("The price is "+price);
       $element.attr({
         min: price - 1000,
         max: price + 1000,
@@ -90,7 +91,7 @@
       });
 
       function updateHandle(el, val) {
-          $('#seller-price-slider').html(val);
+          $('#seller-price-slider').val(val);
       }
       $element.rangeslider('update', true);
   }
