@@ -40,14 +40,28 @@
             var seller_id = queryParams.seller_id ? queryParams.seller_id : "seller1";
             var product = value.product;
             var sellable_bid_id = snapshot.key();
-            var seller_id_reference = fRef.child("/sellers/"+seller_id+"products/"+product);
-            seller_id_reference.on('value', function(product_snapshot){
+            var bidReference = getFirebaseReference().child("/approved_bids/"+sellable_bid_id);
+            var bidMarked = 0
+            bidReference.on("value", function(snapshot) {
+                if(snapshot.val()) bidMarked = 1;
+                if (bidMarked == 0){
+                var seller_id_reference = fRef.child("/sellers/"+seller_id+"/products/"+product);
+                seller_id_reference.on('value', function(product_snapshot){
                 var sellable_product = product_snapshot.val();
-                if(sellable_product && canProceed(product.price, sellable_product)){
+                if(sellable_product && canProceed(value.price, sellable_product)){
                    console.log("Found product "+sellable_product);
-                   // Append to seller div here - use sellable_bid_id
+                   $('.seller-wait-screen').addClass('hidden');
+                   $('.seller-bid-screen').removeClass('hidden');
+                   $('#seller_product_id').html(product.replace("_", " "));
+                   $('#seller_min_price').html(sellable_product.min_price);
+                   $('#customer_selected_price').html(value.price);
+                   $('#bidId').val(snapshot.key());
                 }
-              }, function(errorObject){ console.log("Seller Product Doesn't exist");
+                }, function(errorObject){ console.log("Seller Product Doesn't exist");
+              });  
+              }
+            }, function (errorObject) {
+                console.log("The read failed: " + errorObject.code);
             });
        });
    }
@@ -56,14 +70,21 @@
         return (customer_requested_price < sellable_product.max_price && customer_requested_price > sellable_product.min_price);
    }
 
+   var markAsBidded = function(bidId){
+      var firebaseReference = getFirebaseReference().child("/approved_bids");
+      var mydict = {}
+      mydict[bidId] = { bidded : 1}
+      firebaseReference.set(mydict);
+   }
+
    // seller approving a product that she can deliver
    var productApprove = function(){
-       $doc.on('click', '#seller_approve', function(e){
-            var bidId = $('#bid_id').val();
-            var sla = $('#sla').val();
-            var seller_distance = $('#seller_distance').val();
-            var seller_price = $('#seller_price').val();
-            var seller_id = queryParams.seller_id ? queryParams.seller_id : "seller1";
+       $doc.on('click', '#seller-cta', function(e){
+            var bidId = $('#bidId').val();
+            var sla = $('#sla').val() ? $('#sla').val() : 12;
+            var seller_distance = $('#seller_distance').val() ? $('#seller_distance').val() : 2;
+            var seller_price = $('#seller_min_price').html();
+            var seller_id = queryParams.seller_id ? queryParams.seller_id : "WT_Retail";
             var bidsReference = getFirebaseReference().child("/bids/"+bidId+"/sellers").push();            
             var max = 5; var min = 3;
             bidsReference.set({
@@ -73,6 +94,7 @@
               seller_distance: seller_distance,
               rating: Math.floor(Math.random() * (max - min + 1)) + min 
             });
+            markAsBidded(bidId);
        });
    } 
 

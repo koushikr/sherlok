@@ -82,7 +82,7 @@
             $('#product-info').addClass('hidden');
             $('#product-container').addClass('hidden');
             var product = $('#selectedProduct').val();
-            var price = ($('#customer-price').html().split(" "))[1];
+            var price = $('#customer-price .number').html();
             if(customer.customer_id && price && product){
               var bidsReference = getFirebaseReference().child("bids").push();            
               bidsReference.set({
