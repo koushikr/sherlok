@@ -32,34 +32,78 @@
 
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="container">
-        <div class="header row">
-            <div class="col-xs-4 col-xs-offset-4 center" id="title">
-                <img src="img/logo.png" width="100px" height="15px">
+       <div class="header row">
+            <div class="col-xs-6 col-xs-offset-2 center" id="title">
+                <img src="img/logo.png" width="150px" height="22.5px">
             </div>
-            <div class="col-xs-4 notification">
-                <img src="img/notification.png" width="30px" height="30px">
+            <div class="col-xs-4">
+                <div class="notification">
+                    <img src="img/notification.png" width="30px" height="30px">
+                    <span id="alert-count">1</span>
+                </div>
             </div>
         </div>
 
-        <div class="content request-screen">
+        <div class="content request-screen hidden">
             <div class="form-group" id="the-basics">
                 <input type="text" class="form-control typeahead" id="exampleInputEmail1" placeholder="Select a Product">
             </div>
 
-            <div class="product-container">
-                <h2>Dell Inspiron 1525</h2>
-                <img src="img/products/1.png">
+            <div class="center-image-container hidden">
+                <img src="img/sherlock.png" height="170px" width="170px">
             </div>
 
-            <div class="form-group">
-                <p class="center" id="customer-price">₹ 9000</p>
+            <div id="product-info" class="">
+                <div class="product-container">
+                    <h2>Dell Inspiron 1525</h2>
+                    <img src="img/products/1.png">
+                </div>
+
+                <div class="form-group">
+                    <p class="center" id="customer-price">₹ 9000</p>
+                </div>
+
+                <div class="form-group">
+                    <input type="range" min="10" max="1000" step="10" value="300">
+                </div>
+
+                <a href="#" id="screen1-cta" class="btn">Request</a>
+            </div>
+        </div>
+
+        <div class="content success-screen hidden">
+            <h2>Broadcasting your Query</h2>
+            <div class="center-image-container">
+                <img src="img/broadcast.gif" height="auto" width="100%">
+            </div>
+        </div>
+
+        <div class="content bid-result-screen ">
+            <h2>Choose your preferred Seller</h2>
+
+            <div class="bid-item row">
+                <div class="col-xs-4 bid-seller">
+                    Poorvika Mobiles
+                </div>
+                <div class="col-xs-4 bid-price">
+                    ₹ 2000
+                </div>
+                <div class="col-xs-4 bid-cta">
+                    <a href="#" class="btn bid-btn">Choose</a>
+                </div>
             </div>
 
-            <div class="form-group">
-                <input type="range" min="10" max="1000" step="10" value="300">
+            <div class="bid-item row">
+                <div class="col-xs-4 bid-seller">
+                    Sangeeta Mobiles
+                </div>
+                <div class="col-xs-4 bid-price">
+                    ₹ 2500
+                </div>
+                <div class="col-xs-4 bid-cta">
+                    <a href="#" class="btn bid-btn">Choose</a>
+                </div>
             </div>
-
-            <a href="#" id="screen1-cta" class="btn">Request</a>
         </div>
 
     </div> <!-- /container -->
