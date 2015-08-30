@@ -2,16 +2,16 @@
  * This is the jQuery event binder for sherlock.
  */
 
-(function($){   
+(function($){
    var $doc = $(document);
    $doc.on('ready', init);
-    
-   // Init method when the page loads 
+
+   // Init method when the page loads
    function init(){
         console.log("Initing sherlock seller page");
         childAdded();
         productApprove();
-   }  
+   }
 
    // Get QueryParams from the url
    var queryParams = function () {
@@ -30,7 +30,7 @@
         }
         return query_string;
    } ();
-   
+
    var childAdded = function(){
        var fRef = getFirebaseReference();
        var firebaseReference = fRef.child("bids");
@@ -60,7 +60,7 @@
                    updateSlaSlider();
                 }
                 }, function(errorObject){ console.log("Seller Product Doesn't exist");
-              });  
+              });
               }
             }, function (errorObject) {
                 console.log("The read failed: " + errorObject.code);
@@ -69,15 +69,16 @@
    }
 
    var updateSlider = function(price){
-      var $element = $('input[id="seller-price"]');
+      var $element = $('input[id="seller-price-slider"]');
+      console.log("The price is "+price);
       $element.attr({
         min: price - 1000,
         max: price + 1000,
         step: 100,
         value: price - 1000
       });
-      
-      
+
+
       $element.rangeslider({
         polyfill: false,
         onInit: function() {
@@ -90,13 +91,13 @@
       });
 
       function updateHandle(el, val) {
-          $('#seller-price').html(val);
+          $('#seller-price-slider').val(val);
       }
       $element.rangeslider('update', true);
   }
-      
-  var updateSlaSlider = function(sla){    
-      $element = $('input[id="sla"]');
+
+  var updateSlaSlider = function(sla){
+      var $element = $('input[id="sla"]');
       $element.attr({
         min: 12,
         max: 48,
@@ -120,7 +121,7 @@
       $element.rangeslider('update', true);
   }
 
-  
+
 
    var canProceed = function(customer_requested_price, sellable_product){
         return (customer_requested_price < sellable_product.max_price && customer_requested_price > sellable_product.min_price);
@@ -141,17 +142,19 @@
             var seller_distance = $('#seller_distance').val() ? $('#seller_distance').val() : 2;
             var seller_price = $('#seller_min_price').html();
             var seller_id = queryParams.seller_id ? queryParams.seller_id : "WT_Retail";
-            var bidsReference = getFirebaseReference().child("/bids/"+bidId+"/sellers").push();            
+            var bidsReference = getFirebaseReference().child("/bids/"+bidId+"/sellers").push();
             var max = 5; var min = 3;
             bidsReference.set({
               seller_id: seller_id,
               sla: sla,
               seller_price: seller_price,
               seller_distance: seller_distance,
-              rating: Math.floor(Math.random() * (max - min + 1)) + min 
+              rating: Math.floor(Math.random() * (max - min + 1)) + min
             });
             markAsBidded(bidId);
+
+            alert("Bid Sent!");
        });
-   } 
+   }
 
 })(jQuery);

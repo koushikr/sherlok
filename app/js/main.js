@@ -61,11 +61,13 @@ $('#the-basics .typeahead').typeahead({
   name: 'states',
   source: substringMatcher(states)
 }).on('typeahead:selected', function(obj, datum){
+    var clone = datum;
     datum=datum.replace(/ /g,"_");
     $('#product-info').removeClass('hidden');
     $('.product-container').removeClass('hidden');
     $('#'+datum).removeClass('hidden');
     $('#selectedProduct').val(datum);
+    $('#product-text-value').html(clone);
     console.log(pictureDict);
     $('.product-position').attr('src', pictureDict[datum].image_name);
     $('.number').html(pictureDict[datum].price);
